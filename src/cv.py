@@ -16,7 +16,7 @@ edgeMask = cv2.Canny(tiles, 100, 200)
 edges = cv2.bitwise_and(image, image, mask=edgeMask)
 
 contours, hierarchy = cv2.findContours(edgeMask,
-                                       cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+                                       cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
 cv2.drawContours(image, contours, -1, (0, 255, 0), 3)
 
