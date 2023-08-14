@@ -45,3 +45,18 @@ class Grid:
             newGrid.insertWord(word[0], word[1], word[2], word[3])
 
         self.grid = newGrid.grid
+
+    # Improve performance
+    def getUsableLetters(self):
+        usableLetters = []
+
+        for y in range(len(self.grid)):
+            for x in range(len(self.grid[y])):
+                if not self.grid[y][x] == "":
+                    if ((self.grid[y + 1][x] == "" and y < len(self.grid)) or
+                        (self.grid[y - 1][x] == "" and y > 0) or
+                        (self.grid[y][x + 1] == "" and x < len(self.grid[0])) or
+                        (self.grid[y][x - 1] == "" and x > 0)):
+                        usableLetters.append([self.grid[y][x], x, y])
+
+        return usableLetters
