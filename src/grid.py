@@ -28,3 +28,12 @@ class Grid:
                 self.grid[y][x + i] = word[i]
             else:
                 self.grid[y + i][x] = word[i]
+
+    def removeWord(self, word, x, y, horizontal):
+        self.words.remove([word, x, y, horizontal])
+        newGrid = Grid()
+
+        for word in self.words:
+            newGrid.insertWord(word[0], word[1], word[2], word[3])
+
+        self.grid = newGrid.grid
