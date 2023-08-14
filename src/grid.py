@@ -20,6 +20,14 @@ class Grid:
         self.grid = [["" for i in range(length)] for n in range(length)]
         self.words = []
 
+    def getCopy(self):
+        copy = Grid()
+
+        copy.grid = self.grid
+        copy.words = self.words
+
+        return copy
+
     def insertWord(self, word, x, y, horizontal):
         self.words.append([word, x, y, horizontal])
 
