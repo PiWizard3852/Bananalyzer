@@ -1,8 +1,10 @@
 from collections import defaultdict
 from functools import lru_cache
 
+
 def sortLetters(str):
     return ''.join(sorted(str.strip().lower()))
+
 
 @lru_cache
 def getDictionary():
@@ -15,16 +17,18 @@ def getDictionary():
 
     return dictionary
 
-def getAnagrams(str):
+
+def getPlayableWords(letters):
     dictionary = getDictionary()
-    anagrams = []
+    words = []
 
-    sorted = sortLetters(str)
+    for key in dictionary:
+        if letters.issuperset(key):
+            for word in dictionary[key]:
+                words.append(word)
 
-    for anagram in dictionary[sorted]:
-        anagrams.append(anagram.strip().lower())
+    return words
 
-    return anagrams
 
 while True:
     print("Input a string (Enter to quit): ")
@@ -34,9 +38,10 @@ while True:
         break
 
     else:
-        anagrams = getAnagrams(str)
+        anagrams = getPlayableWords(set(str))
         print('\n')
 
         for anagram in anagrams:
             print(anagram)
-            print('\n')
+
+        print('\n')
