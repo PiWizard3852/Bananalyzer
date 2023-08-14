@@ -27,7 +27,7 @@ def getPlayableWords(letters):
             for word in dictionary[key]:
                 words.append(word)
 
-    return words
+    return sorted(words, key=len, reverse=True)
 
 
 while True:
